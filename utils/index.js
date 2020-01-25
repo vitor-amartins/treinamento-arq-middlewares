@@ -1,4 +1,4 @@
-const hash = require('hash');
+const hash = require('./hash');
 
 module.exports = {
   hash,
