@@ -6,8 +6,6 @@ const modelInjector = require('./helpers/model-injector');
 const utilsInjector = require('./helpers/utils-injector');
 const { errorHandler, requestHandler, notFoundHandler } = require('./handlers');
 
-const authRoutes = require('./routes/auth');
-
 require('dotenv').config();
 
 // ================ MONGO DB ================ //
@@ -34,8 +32,6 @@ app.use(modelInjector);
 app.use(utilsInjector);
 
 // Magic
-
-app.use(authRoutes);
 
 app.use(errorHandler);
 app.use(notFoundHandler);
