@@ -8,4 +8,14 @@ router.route('/api/users').post(
   user.create,
 );
 
+router.route('/api/users').get(
+  authorizer,
+  user.list,
+);
+
+router.route('/api/users/:id').get(
+  authorizer,
+  user.detail,
+);
+
 module.exports = router;
