@@ -9,3 +9,5 @@ const notFoundHandler = async (req, res, next) => {
     return next(err);
   }
 };
+
+module.exports = notFoundHandler;
