@@ -2,8 +2,6 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 
-const modelInjector = require('./helpers/model-injector');
-const utilsInjector = require('./helpers/utils-injector');
 const { errorHandler, requestHandler, notFoundHandler } = require('./handlers');
 
 require('dotenv').config();
@@ -27,9 +25,6 @@ app.use(cors());
 app.use(express.json());
 
 // ================ HERE MAGIC HAPPENS ================ //
-
-app.use(modelInjector);
-app.use(utilsInjector);
 
 // Magic
 
