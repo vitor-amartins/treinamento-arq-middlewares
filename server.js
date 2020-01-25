@@ -2,8 +2,6 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 
-const { errorHandler, requestHandler, notFoundHandler } = require('./handlers');
-
 require('dotenv').config();
 
 // ================ MONGO DB ================ //
@@ -27,10 +25,6 @@ app.use(express.json());
 // ================ HERE MAGIC HAPPENS ================ //
 
 // Magic
-
-app.use(errorHandler);
-app.use(notFoundHandler);
-app.use(requestHandler);
 
 // ================ RUN BITCH ================ //
 const port = process.env.PORT || 3000;
