@@ -9,3 +9,5 @@ const errorHandler = async (err, req, res, next) => {
   }
   return next();
 };
+
+module.exports = errorHandler;
