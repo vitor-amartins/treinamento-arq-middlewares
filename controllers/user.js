@@ -72,20 +72,9 @@ const update = async (req, res, next) => {
   }
 };
 
-const remove = async (req, res, next) => {
-  try {
-    await res.locals.MODELS.User.findByIdAndDelete(req.params.id);
-    res.locals.status = 204;
-    return next();
-  } catch (err) {
-    return next(err);
-  }
-};
-
 module.exports = {
   create,
   list,
   detail,
   update,
-  remove,
 };
