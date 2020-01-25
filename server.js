@@ -7,7 +7,6 @@ const utilsInjector = require('./helpers/utils-injector');
 const { errorHandler, requestHandler, notFoundHandler } = require('./handlers');
 
 const authRoutes = require('./routes/auth');
-const userRoutes = require('./routes/user');
 
 require('dotenv').config();
 
@@ -37,7 +36,6 @@ app.use(utilsInjector);
 // Magic
 
 app.use(authRoutes);
-app.use(userRoutes);
 
 app.use(errorHandler);
 app.use(notFoundHandler);
