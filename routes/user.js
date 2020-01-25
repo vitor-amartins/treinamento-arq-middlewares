@@ -19,10 +19,4 @@ router.route('/api/users/:id').get(
   user.detail,
 );
 
-router.route('/api/users/:id').patch(
-  authorizer,
-  permissioner(['normal']),
-  user.update,
-);
-
 module.exports = router;
