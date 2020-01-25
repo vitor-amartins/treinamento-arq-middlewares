@@ -1,6 +1,7 @@
 const express = require('express');
 const user = require('./../controllers/user');
 const authorizer = require('./../helpers/authorizer');
+const permissioner = require('./../helpers/permissioner');
 
 const router = express.Router();
 
@@ -20,6 +21,7 @@ router.route('/api/users/:id').get(
 
 router.route('/api/users/:id').patch(
   authorizer,
+  permissioner(['normal']),
   user.update,
 );
 

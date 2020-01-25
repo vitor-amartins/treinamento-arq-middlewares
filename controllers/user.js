@@ -8,6 +8,7 @@ const create = async (req, res, next) => {
       name,
       email,
       password: hashedPassword,
+      role: 'normal',
     });
 
     res.locals.data = user;
@@ -47,6 +48,10 @@ const detail = async (req, res, next) => {
 const update = async (req, res, next) => {
   try {
     const { name, email } = req.body;
+
+    if (req.params.id !== res.locals.USER._id.toString()) {
+      return next({ status: 403, data: 'You do not have permission for this' });
+    }
 
     const user = await res.locals.MODELS.User.findById(req.params.id).select('-password');
 
