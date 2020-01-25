@@ -1,5 +1,10 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
+
+const modelInjector = require('./helpers/model-injector');
+const utilsInjector = require('./helpers/utils-injector');
+const { errorHandler, requestHandler, notFoundHandler } = require('./handlers');
 
 require('dotenv').config();
 
@@ -18,12 +23,19 @@ connection.once('open', () => console.log('MongoDB connection established sucess
 // ================ APPLICATION ================ //
 const app = express();
 
-// Json
-// Cors
+app.use(cors());
+app.use(express.json());
 
 // ================ HERE MAGIC HAPPENS ================ //
 
+app.use(modelInjector);
+app.use(utilsInjector);
+
 // Magic
+
+app.use(errorHandler);
+app.use(notFoundHandler);
+app.use(requestHandler);
 
 // ================ RUN BITCH ================ //
 const port = process.env.PORT || 3000;
