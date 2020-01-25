@@ -25,4 +25,10 @@ router.route('/api/users/:id').patch(
   user.update,
 );
 
+router.route('/api/users/:id').delete(
+  authorizer,
+  permissioner(['admin']),
+  user.remove,
+);
+
 module.exports = router;
