@@ -7,4 +7,8 @@ router.route('/api/login').post(
   auth.login,
 );
 
+router.route('/api/check-token').get(
+  auth.checkToken,
+);
+
 module.exports = router;

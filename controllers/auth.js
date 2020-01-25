@@ -33,6 +33,28 @@ const login = async (req, res, next) => {
   }
 };
 
+const checkToken = async (req, res, next) => {
+  try {
+    const token = req.headers['x-access-token'];
+
+    if (!token) {
+      return next({ status: 401, data: 'Token Not Found'});
+    }
+    try {
+      await jwt.verify(token, process.env.JWT_SECRET);
+      res.locals.status = 200;
+      res.locals.data = true;
+    } catch (err) {
+      res.locals.status = 200;
+      res.locals.data = false;
+    }
+    return next();
+  } catch (err) {
+    return next(err);
+  }
+};
+
 module.exports = {
   login,
+  checkToken,
 };
