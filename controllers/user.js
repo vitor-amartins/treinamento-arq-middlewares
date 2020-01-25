@@ -44,8 +44,32 @@ const detail = async (req, res, next) => {
   }
 };
 
+const update = async (req, res, next) => {
+  try {
+    const { name, email } = req.body;
+
+    const user = await res.locals.MODELS.User.findById(req.params.id).select('-password');
+
+    if (name) {
+      user.name = name;
+    }
+
+    if (email) {
+      user.email = email;
+    }
+
+    await user.save();
+    res.locals.data = user;
+    res.locals.status = 200;
+    return next();
+  } catch (err) {
+    return next(err);
+  }
+};
+
 module.exports = {
   create,
   list,
   detail,
+  update,
 };
